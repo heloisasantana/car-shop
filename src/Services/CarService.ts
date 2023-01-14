@@ -13,6 +13,18 @@ class CarService {
     const newCar = await carModel.insertCarModel(bodyCar);
     return this.generateCarDomain(newCar);
   }
+
+  async getAllService() {
+    const carModel = new CarModel();
+    const allCars = await carModel.getAll();
+    return allCars.map((element) => this.generateCarDomain(element));
+  }
+
+  async getFromIDService(id: string) {
+    const carModel = new CarModel();
+    const carFromID = await carModel.getFromID(id);
+    return this.generateCarDomain(carFromID);
+  }
 }
 
 export default CarService;

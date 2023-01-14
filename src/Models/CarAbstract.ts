@@ -12,6 +12,10 @@ abstract class CarAbstract<T> {
   }
   
   async insertCarModel(bodyCar: T): Promise<T> { return this.model.create({ ...bodyCar }); }
+
+  async getAll(): Promise<T[]> { return this.model.find(); }
+
+  async getFromID(id: string): Promise<T | null> { return this.model.findById({ _id: id }); }
 }
   
 export default CarAbstract;
