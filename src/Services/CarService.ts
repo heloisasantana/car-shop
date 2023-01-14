@@ -25,6 +25,13 @@ class CarService {
     const carFromID = await carModel.getFromID(id);
     return this.generateCarDomain(carFromID);
   }
+
+  async refreshCarService(bodyCar: ICar, id: string) {
+    const carModel = new CarModel();
+    await carModel.refreshCar(bodyCar, id);
+    const carFromID = await carModel.getFromID(id);
+    return this.generateCarDomain(carFromID);
+  }
 }
 
 export default CarService;

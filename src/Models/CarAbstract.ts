@@ -1,4 +1,4 @@
-import { Model, models, model, Schema } from 'mongoose';
+import { Model, models, model, Schema, UpdateQuery } from 'mongoose';
   
 abstract class CarAbstract<T> {
   private schema: Schema;
@@ -16,6 +16,14 @@ abstract class CarAbstract<T> {
   async getAll(): Promise<T[]> { return this.model.find(); }
 
   async getFromID(id: string): Promise<T | null> { return this.model.findById({ _id: id }); }
+
+  async refreshCar(bodyCar: T, id: string): Promise<T | null> {
+    return this.model.findByIdAndUpdate(
+      { _id: id },
+      { ...bodyCar } as UpdateQuery<T>,
+      { new: true },
+    );
+  }
 }
   
 export default CarAbstract;
