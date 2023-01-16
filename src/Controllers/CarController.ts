@@ -14,9 +14,8 @@ class CarController {
   }
 
   async insertCar() {
-    const bodyCar: ICar = { ...this.req.body };
     try {
-      const insertedCar = await this.service.insertCarService(bodyCar);
+      const insertedCar = await this.service.insertCarService(this.req.body as ICar);
       return this.res.status(201).json(insertedCar);
     } catch (err) {
       return this.res.status(404).json((err as Error).message);

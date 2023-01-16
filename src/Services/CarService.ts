@@ -8,9 +8,9 @@ class CarService {
     return new Car(car);
   }
 
-  async insertCarService(bodyCar: ICar) {
+  async insertCarService(car: ICar) {
     const carModel = new CarModel();
-    const newCar = await carModel.insertCarModel(bodyCar);
+    const newCar = await carModel.insert(car);
     return this.generateCarDomain(newCar);
   }
 
@@ -26,9 +26,9 @@ class CarService {
     return this.generateCarDomain(carFromID);
   }
 
-  async refreshCarService(bodyCar: ICar, id: string) {
+  async refreshCarService(car: ICar, id: string) {
     const carModel = new CarModel();
-    await carModel.refreshCar(bodyCar, id);
+    await carModel.refresh(car, id);
     const carFromID = await carModel.getFromID(id);
     return this.generateCarDomain(carFromID);
   }
