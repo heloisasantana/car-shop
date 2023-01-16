@@ -12,7 +12,19 @@ class MotorcycleService {
     const motorcycleModel = new MotorcycleModel();
     const newMotorcycle = await motorcycleModel.insert(motorcycle);
     return this.generateMotorcycleDomain(newMotorcycle);
-  } 
+  }
+
+  async getAllService() {
+    const motorcycleModel = new MotorcycleModel();
+    const allMotorcycles = await motorcycleModel.getAll();
+    return allMotorcycles.map((element) => this.generateMotorcycleDomain(element));
+  }
+
+  async getFromIDService(id: string) {
+    const motorcycleModel = new MotorcycleModel();
+    const motorcycleFromID = await motorcycleModel.getFromID(id);
+    return this.generateMotorcycleDomain(motorcycleFromID);
+  }
 }
 
 export default MotorcycleService;
